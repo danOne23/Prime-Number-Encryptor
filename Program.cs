@@ -60,7 +60,7 @@ namespace encryptor
                         output = "Character not found in Dictionary";
                     }
                 }
-                else output = "error";
+                else output = "Invalid option";
 
                 Console.WriteLine("\n{0}\n", output);
             }
