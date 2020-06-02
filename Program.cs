@@ -12,8 +12,22 @@ namespace encryptor
                 Console.WriteLine("\nPhrase\n");
                 string input = Console.ReadLine();
 
-                Console.WriteLine("\nEncryptionKey\n");
-                long key = Int64.Parse(Console.ReadLine());
+
+                long key = 1;
+                while (true)
+                {
+                    Console.WriteLine("\nEncryptionKey\n");
+
+                    try
+                    {
+                        key = Int64.Parse(Console.ReadLine());
+                        break;
+                    }
+                    catch (System.FormatException)
+                    {
+                        Console.WriteLine("\nPlease enter an intiger\n");
+                    }
+                }
 
                 Console.WriteLine("\nSeperator\n");
                 string seperator = Console.ReadLine();
@@ -24,13 +38,27 @@ namespace encryptor
                 string output;
                 if (action == "1")
                 {
-                    Encryptor encryptor = new Encryptor(input, key, seperator);
-                    output = encryptor.encryptedStr;
+                    try
+                    {
+                        Encryptor encryptor = new Encryptor(input, key, seperator);
+                        output = encryptor.encryptedStr;
+                    } catch (System.Collections.Generic.KeyNotFoundException)
+                    {
+                        output = "Character not found in Dictionary";
+                    }
+                    
                 }
                 else if (action == "2")
                 {
-                    Decryptor decryptor = new Decryptor(input, key, seperator);
-                    output = decryptor.decryptedStr;
+                    try
+                    {
+                        Decryptor decryptor = new Decryptor(input, key, seperator);
+                        output = decryptor.decryptedStr;
+                    }
+                    catch (System.Collections.Generic.KeyNotFoundException)
+                    {
+                        output = "Character not found in Dictionary";
+                    }
                 }
                 else output = "error";
 
