@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace encryptor
 {
@@ -27,7 +29,7 @@ namespace encryptor
 
         string[] seperatedChars()
         {
-            return encryptedStr.Split(seperator);
+            return encryptedStr.Split(seperator.ToCharArray()[0]);
         }
 
         string decryptChar(long encryptedChar)
@@ -36,6 +38,5 @@ namespace encryptor
             CryptDictionary dict = new CryptDictionary();
             return dict.DecryptionDict()[encryptedChar];
         }
-
     }
 }

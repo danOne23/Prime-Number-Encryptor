@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace encryptor
 {
-
     class Program
     {
         static void Main(string[] args)
@@ -29,8 +32,16 @@ namespace encryptor
                     }
                 }
 
-                Console.WriteLine("\nSeperator\n");
-                string seperator = Console.ReadLine();
+                string seperator;
+                while (true)
+                {
+                    Console.WriteLine("\nSeperator\n");
+                    seperator = Console.ReadLine();
+
+                    if (seperator.Length == 1) break;
+                    else Console.WriteLine("\nSeperator must be one character long\n");
+                }
+                
 
                 Console.WriteLine("\nChoose an action\n1) Encrypt\n2) Decrypt\n");
                 string action = Console.ReadLine();
@@ -42,11 +53,12 @@ namespace encryptor
                     {
                         Encryptor encryptor = new Encryptor(input, key, seperator);
                         output = encryptor.encryptedStr;
-                    } catch (System.Collections.Generic.KeyNotFoundException)
+                    }
+                    catch (System.Collections.Generic.KeyNotFoundException)
                     {
                         output = "Character not found in Dictionary";
                     }
-                    
+
                 }
                 else if (action == "2")
                 {
