@@ -16,5 +16,34 @@ namespace encryptor
         {
             InitializeComponent();
         }
+
+        private void encryptBtn_Click(object sender, EventArgs e)
+        {
+            string o;
+            try
+            {
+                o = Program.Encrypt(inputTxt.Text, inputKey.Text, inputSepearator.Text);
+            } catch (System.FormatException)
+            {
+                o = "error";
+            }
+
+            outputTxt.Text = o;
+        }
+
+        private void decryptBtn_Click(object sender, EventArgs e)
+        {
+            string o;
+            try
+            {
+                o = Program.Decrypt(inputTxt.Text, inputKey.Text, inputSepearator.Text);
+            }
+            catch (System.FormatException)
+            {
+                o = "error";
+            }
+
+            outputTxt.Text = o;
+        }
     }
 }
